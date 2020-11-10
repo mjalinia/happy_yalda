@@ -121,14 +121,22 @@ for row in range(7):
 
 offset = WIDTH
 while True:
-    os.system("cls")
+    try:
 
-    for row in range(7):
-        print(" " * offset + printedMessage[row][max(0,offset*-1):WIDTH - offset])
+        if os.name == 'nt':
+            os.system("cls")
+        else:
+            os.system("clear")
+
+        for row in range(7):
+            print(" " * offset + printedMessage[row][max(0,offset*-1):WIDTH - offset])
     
-    offset -=1
+        offset -=1
    
-    if offset <= ((len(message)+2)*6) * -1:
-        offset = WIDTH
+        if offset <= ((len(message)+2)*6) * -1:
+            offset = WIDTH
     
-    time.sleep(0.05)
+        time.sleep(0.05)
+    except:
+        print("\n\033[92mUser using CTRL + C...")
+        exit(0)
